@@ -213,7 +213,7 @@ window.__ModuleLoader__.load({
         // 必须用 slots.inject：它会等槽位真正被声明，槽位消失时贡献自动撤下。
         ctx.slots.inject('conversation.input.dock', () =>
           ctx.slots.register(
-            { name: 'conversation.input.dock', id: 'kid-security', order: 8 },
+            { name: 'conversation.input.dock', id: 'kid-security', order: 10 },
             ScopedSecurityPanel,
           ))
       },

@@ -189,7 +189,7 @@ window.__ModuleLoader__.load({
         }, 'kid-sysmon: styles')
         ctx.slots.inject('conversation.input.dock', () =>
           ctx.slots.register(
-            { name: 'conversation.input.dock', id: 'kid-sysmon', order: 10 },
+            { name: 'conversation.input.dock', id: 'kid-sysmon', order: 6 },
             ScopedSysmonPanel,
           ))
       },

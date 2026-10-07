@@ -262,7 +262,7 @@ window.__ModuleLoader__.load({
         // 槽位已有占用者：todo=0、kid-storage=6、goal=10、queue=20，本卡片取 7。
         ctx.slots.inject('conversation.input.dock', () =>
           ctx.slots.register(
-            { name: 'conversation.input.dock', id: 'kid-memory', order: 7 },
+            { name: 'conversation.input.dock', id: 'kid-memory', order: 9 },
             ScopedMemoryPanel,
           ))
       },
