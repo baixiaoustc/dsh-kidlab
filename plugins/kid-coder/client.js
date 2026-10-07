@@ -25,7 +25,6 @@ const CSS = `
   border-radius:24px;padding:16px 18px 14px;
   box-shadow:0 8px 24px rgba(70,120,220,.22),inset 0 0 0 2px rgba(255,255,255,.85);
   width:100%;max-width:100%;box-sizing:border-box;line-height:1.5;position:relative;overflow:hidden}
-.kc-card::after{content:"🐵";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
 .kc-toggle{cursor:pointer;user-select:none}
 .kc-toggle:hover .kc-min{border-color:#5a8ee0}
 .kc-min{display:flex;align-items:center;gap:10px;padding:6px 2px;border:2px dashed rgba(90,142,224,.4);border-radius:14px}
