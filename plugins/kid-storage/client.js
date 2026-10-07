@@ -29,7 +29,6 @@ const CSS = `
   border-radius:24px;padding:16px 18px 14px;
   box-shadow:0 8px 24px rgba(230,160,60,.25),inset 0 0 0 2px rgba(255,255,255,.85);
   width:100%;max-width:100%;box-sizing:border-box;line-height:1.45;position:relative;overflow:hidden}
-.st-card::after{content:"🐿️";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
 .st-toggle{cursor:pointer;user-select:none}
 .st-toggle:hover .st-min{border-color:#e0973a}
 .st-min{display:flex;align-items:center;gap:10px;padding:6px 2px;border:2px dashed rgba(224,151,58,.4);border-radius:14px}

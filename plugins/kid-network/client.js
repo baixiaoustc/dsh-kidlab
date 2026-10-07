@@ -23,7 +23,6 @@ const CSS = `
   border-radius:24px;padding:18px 20px 16px;
   box-shadow:0 8px 24px rgba(90,160,230,.22),inset 0 0 0 2px rgba(255,255,255,.8);
   width:100%;max-width:100%;box-sizing:border-box;line-height:1.45;position:relative;overflow:hidden}
-.pg-card::after{content:"☁️";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
 .pg-head{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;letter-spacing:.5px}
 .pg-bird{font-size:26px}
 .pg-badge{font-size:12px;font-weight:800;padding:3px 11px;border-radius:999px;margin-left:auto}
