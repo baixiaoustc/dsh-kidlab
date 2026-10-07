@@ -22,7 +22,7 @@ const PATH = '/kid-security/collect'
 const TAG_ID = PKG + '/card.css'
 // 只在这些会话里显示这张卡；空数组 [] = 每个会话都显示。
 // 会话 id 是持久的：页面刷新、重启后都还是它。取当前会话 id：终端执行 `echo $DSH_SESSION_ID`。
-const ONLY_SESSIONS = ['session-0f874f0b-4256-410d-b95c-42ddae484b46']
+const ONLY_SESSIONS = []
 
 const CSS = `
 .ks-card{font-family:-apple-system,"PingFang SC","Segoe UI",sans-serif;color:#2c2350;

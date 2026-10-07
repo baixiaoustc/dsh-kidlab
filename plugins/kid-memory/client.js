@@ -33,7 +33,7 @@ const TAG_ID = PKG + '/card.css'
 // conversation.input.dock 能给的注册参数只有 { id, order, label }。
 // 代价须知：模块照旧在每个会话里装载、slot 也照旧注册（槽位树里一直能看到
 // kid-memory），只是白名单外的会话渲染成 null，连内层的 8 秒轮询一起省掉。
-const ONLY_SESSIONS = ['session-8dc4b96e-0413-48f5-8f6e-e6c51e5de4e0']
+const ONLY_SESSIONS = []
 
 const CSS = `
 .mem-card{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",sans-serif;
