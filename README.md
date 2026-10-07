@@ -35,7 +35,7 @@ dsh plugin --profile web add /本仓库/plugins/kid-coder
 #   （或在 agent 会话里：plugin_manager { action: "install_bundle", target: "<路径>" }）
 
 # B. 从 GitHub 安装
-dsh plugin --profile web add github:<owner>/dsh-kidlab#path:plugins/kid-coder
+dsh plugin --profile web add github:baixiaoustc/dsh-kidlab#path:plugins/kid-coder
 ```
 
 装完**首次需要重启 `dsh web`**（进客户端模块表），之后改内容只要刷新页面。
