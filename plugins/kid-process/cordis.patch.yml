@@ -1,5 +1,5 @@
 # kid-process 的安装补丁：往当前 profile 里插一行「工人点名」。
-# 这一行同时提供两半：🧑‍🏭 卡片（client half，见 client.js）与
+# 这一行同时提供两半：🐝 卡片（client half，见 client.js）与
 # proc_count / proc_busiest / proc_family / proc_badge 四个模型工具（host half，见 tools.js）。
 # 这里不写 config 就是全用插件默认值（enabled: true，timeoutMs: 8000）。
 #

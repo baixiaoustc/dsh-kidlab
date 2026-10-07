@@ -2,7 +2,7 @@
 // kid-coder · host half（静态 bundle 的宿主半边）
 // 一个包同时提供三样东西：
 //   1) 五个模型工具 kid_run / kid_explain / kid_practice / kid_review / kid_steps（见 tools.js）
-//   2) 同源 HTTP 路由 /kid-coder/run，供浏览器里的 🧑‍🏫 小教室卡片提交代码、就地取回运行结果
+//   2) 同源 HTTP 路由 /kid-coder/run，供浏览器里的 🐵 小教室卡片提交代码、就地取回运行结果
 //   3) （随包携带）python/ 目录：kidrunner.py + kidturtle.py，kid_run 与卡片都靠它跑码
 // 刻意只 import 本包内的文件和 node 内置模块：bundle 从 profile 的 node_modules
 // 解析，link: 安装时只有包内相对路径和 node 内置模块一定解析得到。

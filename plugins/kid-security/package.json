@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "给小朋友的「电脑安全 / 城堡守卫」启蒙插件：防火墙、磁盘加密、锁屏、远程端口、登录记录五个模型工具，外加一张常驻输入条上方的 🏰 卡片（DeepSeek Harness / Cordis bundle）。",
+  "description": "给小朋友的「电脑安全 / 城堡守卫」启蒙插件：防火墙、磁盘加密、锁屏、远程端口、登录记录五个模型工具，外加一张常驻输入条上方的 🐕 卡片（DeepSeek Harness / Cordis bundle）。",
   "main": "index.js",
   "exports": {
     ".": "./index.js",

@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "给小朋友的「存储 / 大仓库」启蒙插件：分区全景 + 主目录占用榜 + 大件行李榜三个模型工具，外加一张常驻输入条上方的 🧳 卡片（DeepSeek Harness / Cordis）。",
+  "description": "给小朋友的「存储 / 大仓库」启蒙插件：分区全景 + 主目录占用榜 + 大件行李榜三个模型工具，外加一张常驻输入条上方的 🐿️ 卡片（DeepSeek Harness / Cordis）。",
   "main": "index.js",
   "exports": {
     ".": "./index.js",

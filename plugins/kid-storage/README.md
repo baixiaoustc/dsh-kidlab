@@ -3,14 +3,14 @@
 给小朋友的存储启蒙插件（DeepSeek Harness / Cordis bundle）。**一个包 = 一张卡片 + 三个工具**，
 零第三方依赖、无构建步骤，装完即用。
 
-- 🧳 **卡片**：常驻输入条上方，把硬盘讲成「大仓库 / 大行李箱」；真磁盘分区、还挂着的安装包映像、
+- 🐿️ **卡片**：常驻输入条上方，把硬盘讲成「大仓库 / 大行李箱」；真磁盘分区、还挂着的安装包映像、
   主目录各文件夹谁最占地方，都会画成横条。点击标题折叠/展开。
 - 🔧 **模型工具**：`storage_boxes`（分区全景）、`storage_home`（主目录谁最占地方）、
   `storage_heavy`（最重的几件大行李）。免 sudo、只扫用户目录、单命令超时容错。
 
 ```text
 ┌──────────────────────────────────────────────┐
-│ 🧳 仓库大管家   系统盘 Data 总 121G 剩 8.4G ▾ │
+│ 🐿️ 仓库大管家   系统盘 Data 总 121G 剩 8.4G ▾ │
 │  系统盘 Data  ████████████████████████ 92%   │
 │  ~/Downloads  ██████ 759 MB                  │
 └──────────────────────────────────────────────┘
@@ -43,7 +43,7 @@ plugin_manager install_bundle /绝对路径/plugin-kid-storage
 ## 和旧版两个包的差异
 
 合并前是**两个包**、同时挂着：`@kidlab/dsh-kid-storage`（TypeScript 源码 + `defineTool`，只给三个工具）
-和 `@kidlab/dsh-kid-storage-card`（只给路由 + 🧳 卡片）。现在合成这一个包，模型侧与卡片侧的行为都对齐，
+和 `@kidlab/dsh-kid-storage-card`（只给路由 + 🐿️ 卡片）。现在合成这一个包，模型侧与卡片侧的行为都对齐，
 只有三处刻意的差别：
 
 | 差别 | 原因 / 影响 |
@@ -99,7 +99,7 @@ node verify-legacy-equivalence.mjs   # 逐字对照旧版 TS 源码，确认只�
 | `index.js` | host half：注册三个工具 + 卡片的数据路由 `/kid-storage/collect` |
 | `tools.js` | 三个模型工具的普通对象定义（不用 `defineTool`，见文件头注释） |
 | `collect.js` | 采集层：`df`/`du`/`diskutil` → 一份 JSON（卡片用，纯 node 内置模块） |
-| `client.js` | client half：浏览器里的 🧳 卡片（包在 IIFE 里，避免全局声明撞车） |
+| `client.js` | client half：浏览器里的 🐿️ 卡片（包在 IIFE 里，避免全局声明撞车） |
 | `cordis.patch.yml` | 安装补丁：插一行 `kid-storage` |
 | `verify.mjs` | 本地端到端自检 |
 | `verify-legacy-equivalence.mjs` | 与旧版 `legacy/src/tools.ts` 的文本级等价性对照（脚本按 `./src/tools.ts` → `./legacy/src/tools.ts` 顺序找，两处都认） |

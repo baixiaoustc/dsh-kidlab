@@ -1,5 +1,5 @@
 # kid-coder 的安装补丁：往当前 profile 里插一行「小教室」。
-# 这一行同时提供三样东西：🧑‍🏫 跑代码卡片（client half，见 client.js）、
+# 这一行同时提供三样东西：🐵 跑代码卡片（client half，见 client.js）、
 # kid_run / kid_explain / kid_practice / kid_review / kid_steps 五个模型工具
 # （host half，见 tools.js），以及卡片取数用的 POST /kid-coder/run 路由（见 index.js）。
 # 这里不写 config 就表示全用插件默认值（enabled: true，runTimeoutSec: 8，sandbox: true）。

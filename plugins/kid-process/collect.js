@@ -2,12 +2,12 @@
 // kid-process · host 侧取数（卡片的数据源）
 //
 // 与 tools.js 的关系：tools.js 是四个模型工具，输出文本跟 0.1 版**逐字一致**
-// （见 verify-legacy-equivalence.mjs）；本文件只服务 🧑🏭 卡片，命令重新挑过——
+// （见 verify-legacy-equivalence.mjs）；本文件只服务 🐝 卡片，命令重新挑过——
 // 每条都多带一个 pid 字段，这样卡片上的名字能直接对上工具里的「工号」。
 // 两边各自独立，谁都不 import 谁：bundle 走 link: 安装，包内相对路径最稳，
 // 而 tools.js 要保持「一个字没动」，不适合被抽公共层。
 //
-// 主题：🧑🏭 车间点名 —— 进程 = 在这台电脑（工作台）上干活的小工人。
+// 主题：🐝 车间点名 —— 进程 = 在这台电脑（工作台）上干活的小工人。
 //   ps -axo stat=,pid=,comm=  → 点名：一共有多少、几个在卖力、几个在打盹、几个是僵尸
 //   ps -axo pcpu=,pid=,comm=  → 卖力榜：谁这会儿最忙
 //   ps -axo pid=,ppid=,comm=  → 家族：总管 launchd（工号 1）带了多少徒弟

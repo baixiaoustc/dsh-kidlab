@@ -2,7 +2,7 @@
 // kid-storage · host half（静态 bundle 的宿主半边）
 // 一个包同时提供两样东西：
 //   1) 模型工具 storage_boxes / storage_home / storage_heavy（见 tools.js）
-//   2) 同源只读 JSON 路由 GET /kid-storage/collect，供浏览器里的 🧳 卡片定时拉数据
+//   2) 同源只读 JSON 路由 GET /kid-storage/collect，供浏览器里的 🐿️ 卡片定时拉数据
 // 刻意只 import 本包内的文件和 node 内置模块：bundle 从 profile 的 node_modules
 // 解析，link: 安装时只有包内相对路径和 node 内置模块一定解析得到。
 // 没有 tools 能力的 profile：卡片照常，只是没有工具。

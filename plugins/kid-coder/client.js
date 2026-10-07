@@ -4,7 +4,7 @@
 //   React 来自模块表（require('react')），不需自带打包；
 //   数据走同源路由 POST /kid-coder/run（由本包 host 半部注册）：
 //     点「跑一下」→ 提交 {code} → 就地显示控制台输出 + 海龟图 SVG / matplotlib PNG。
-// 主题：🧑‍🏫 小教室 —— 可折叠。默认示例打开即自动跑一遍，
+// 主题：🐵 小教室 —— 可折叠。默认示例打开即自动跑一遍，
 //   让小朋友一打开就看到“哇，出图了”。
 // ⚠️ 整个文件必须包在 IIFE 里：本文件作为 classic script 直接执行，顶层 const
 //    会进入全页共享的全局词法作用域；两个插件 bundle 都声明 `const PKG` 就会
@@ -25,7 +25,7 @@ const CSS = `
   border-radius:24px;padding:16px 18px 14px;
   box-shadow:0 8px 24px rgba(70,120,220,.22),inset 0 0 0 2px rgba(255,255,255,.85);
   width:100%;max-width:100%;box-sizing:border-box;line-height:1.5;position:relative;overflow:hidden}
-.kc-card::after{content:"🧑‍🏫";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
+.kc-card::after{content:"🐵";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
 .kc-toggle{cursor:pointer;user-select:none}
 .kc-toggle:hover .kc-min{border-color:#5a8ee0}
 .kc-min{display:flex;align-items:center;gap:10px;padding:6px 2px;border:2px dashed rgba(90,142,224,.4);border-radius:14px}
@@ -123,7 +123,7 @@ window.__ModuleLoader__.load({
       return React.createElement('div', { className: 'kc-card' },
         React.createElement('div', { className: 'kc-toggle', onClick: () => setExpanded(!expanded), title: expanded ? '收起' : '展开' },
           React.createElement('div', { className: 'kc-min' },
-            React.createElement('span', { className: 'icon' }, '🧑‍🏫'),
+            React.createElement('span', { className: 'icon' }, '🐵'),
             React.createElement('span', { className: 't' }, '小教室 · 跑代码'),
             React.createElement('span', { className: 'sum' }, summary),
             React.createElement('span', { className: 'badge' }, running ? '…' : (res && res.svg ? '图' : 'code')),

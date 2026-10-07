@@ -6,7 +6,7 @@
 // 由 0.1 动态插件 plugin-kid-security/cordis/client.js 搬迁：
 //   host.call('sec:collect') → fetch(PATH)；styles.insert(css) → 自插 <style>；
 //   ctx.interval(...) → 浏览器 setInterval（并在 effect 清理里 clearInterval）。
-// 主题：🏰 城堡安检卡 —— 电脑是一座小城堡，五道守卫逐一报到。
+// 主题：🐕 城堡安检卡 —— 电脑是一座小城堡，五道守卫逐一报到。
 // 配色：紫罗兰（城堡/骑士），和 memory 的蓝、storage 的橙、sysmon 的绿区分。
 // 交互：点击标题折叠/展开，默认只留一行摘要。
 // 会话门禁：见 ONLY_SESSIONS。静态 bundle 的 client 半部是进程级模块图
@@ -30,7 +30,7 @@ const CSS = `
   border-radius:24px;padding:16px 18px 14px;
   box-shadow:0 8px 24px rgba(120,90,220,.25),inset 0 0 0 2px rgba(255,255,255,.85);
   width:100%;max-width:100%;box-sizing:border-box;line-height:1.45;position:relative;overflow:hidden}
-.ks-card::after{content:"🏰";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
+.ks-card::after{content:"🐕";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
 .ks-toggle{cursor:pointer;user-select:none}
 .ks-toggle:hover .ks-min{border-color:#a48ae0}
 .ks-min{display:flex;align-items:center;gap:10px;padding:6px 2px;border:2px dashed rgba(120,90,220,.4);border-radius:14px}
@@ -153,7 +153,7 @@ window.__ModuleLoader__.load({
       return React.createElement('div', { className: 'ks-card' },
         React.createElement('div', { className: 'ks-toggle', onClick: () => setExpanded(!expanded), title: expanded ? '收起详情' : '展开详情' },
           React.createElement('div', { className: 'ks-min' },
-            React.createElement('span', { className: 'icon' }, '🏰'),
+            React.createElement('span', { className: 'icon' }, '🐕'),
             React.createElement('span', { className: 't' }, '城堡安检 · 电脑的守卫'),
             React.createElement('span', { className: 'sum' }, summary),
             level
@@ -177,13 +177,13 @@ window.__ModuleLoader__.load({
 
           // 五道守卫
           React.createElement('div', { className: 'ks-guards' },
-            React.createElement('div', { className: 't' }, '🏰 五道守卫逐一报到'),
+            React.createElement('div', { className: 't' }, '🐕 五道守卫逐一报到'),
             (guardRows.length
               ? guardRows
               : React.createElement('div', { className: 'ks-empty' }, '守卫还没醒…稍等一下'))),
 
           React.createElement('div', { className: 'ks-foot' },
-            '🏰 电脑 = 一座小城堡 ｜ 每 15 秒巡一次城 ｜ ' + time))
+            '🐕 电脑 = 一座小城堡 ｜ 每 15 秒巡一次城 ｜ ' + time))
         : null)
     }
 

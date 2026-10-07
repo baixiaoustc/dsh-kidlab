@@ -3,7 +3,7 @@
 // 由客户端模块表按「包名 = 模块 id」装载：window.__ModuleLoader__.load({id, factory})。
 //   React 来自模块表（require('react')），不需自带打包；
 //   数据走同源只读路由 GET /kid-process/collect（由本包 host 半部注册）。
-// 主题：🧑‍🏭 车间点名 —— 进程 = 在这台电脑（工作台）上干活的小工人。
+// 主题：🐝 车间点名 —— 进程 = 在这台电脑（工作台）上干活的小工人。
 //   点名（总数 / 卖力 / 打盹 / 僵尸）+ 卖力榜 + 家族（总管 launchd 的徒弟们）。
 // 配色：青绿（车间/工装），和 memory 的蓝、storage 的橙、security 的紫、sysmon 的橘区分。
 // 交互：点击标题折叠/展开，默认只留一行摘要。
@@ -163,7 +163,7 @@ window.__ModuleLoader__.load({
       return React.createElement('div', { className: 'kp-card' },
         React.createElement('div', { className: 'kp-toggle', onClick: () => setExpanded(!expanded), title: expanded ? '收起详情' : '展开详情' },
           React.createElement('div', { className: 'kp-min' },
-            React.createElement('span', { className: 'icon' }, '🧑‍🏭'),
+            React.createElement('span', { className: 'icon' }, '🐝'),
             React.createElement('span', { className: 't' }, '工人点名 · 进程小工人'),
             React.createElement('span', { className: 'sum' }, sumText(d)),
             level
@@ -219,7 +219,7 @@ window.__ModuleLoader__.load({
           // 注意：kp-detail 这个 createElement 的调用必须在 `: null` 之前闭合——
           // `expanded ? createElement(…) : null` 的 `:` 不能出现在参数表里面。
           React.createElement('div', { className: 'kp-foot' },
-            '🧑‍🏭 进程 = 在这台电脑上干活的小工人 ｜ 每 15 秒点一次名 ｜ ' + time)
+            '🐝 进程 = 在这台电脑上干活的小工人 ｜ 每 15 秒点一次名 ｜ ' + time)
         ) : null)
     }
 

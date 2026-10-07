@@ -5,7 +5,7 @@
 
 > 背景：给家里 5-18 岁的小朋友做编程入门辅导（配合《成都小学生计算机考试与竞赛》——
 > 低龄走 GESP / 趣味入门，学 Python/海龟画图打基础）。这个插件就是那个“老师”，
-> 还有个能“点按钮跑代码、马上看到输出和海龟画图”的 🧑‍🏫 小教室面板。
+> 还有个能“点按钮跑代码、马上看到输出和海龟画图”的 🐵 小教室面板。
 
 > **形态**：一个包 = 一行插件（`dsh.bundle` + `dsh.client` 同存）。
 > 发布物 9 个文件、零构建步骤（纯 ESM，`index.js` / `tools.js` / `client.js` + `python/`）。
@@ -22,7 +22,7 @@
 | `kid_review` | 温和地检查交上来的代码：先夸、一次只给一个改进点、给 ⭐ |
 | `kid_steps` | 把大目标拆成 3-5 个能立刻得到反馈的小步骤 |
 
-**前端卡片「🧑‍🏫 小教室」**：输入条上方常驻、可折叠。写代码 → 点「跑一下」→
+**前端卡片「🐵 小教室」**：输入条上方常驻、可折叠。写代码 → 点「跑一下」→
 就地显示**控制台输出**和**海龟画出来的 SVG 图形**（/ matplotlib PNG）。打开会自动跑一个
 五角星示例，让小朋友一进来就看到“哇，出图了”。
 
@@ -42,7 +42,7 @@ plugin-kid-coder/
 ├─ cordis.patch.yml           # 装载行：只 insert 一行 kid-coder
 ├─ index.js                   # host 半部：注册 5 个工具（子注入 tools）+ POST /kid-coder/run 路由
 ├─ tools.js                   # 5 个工具定义（普通对象，不 import 任何 dsh 包）+ kid_run 的沙箱执行器
-├─ client.js                  # client 半部：🧑‍🏫 小教室卡片（IIFE + __ModuleLoader__.load + fetch）
+├─ client.js                  # client 半部：🐵 小教室卡片（IIFE + __ModuleLoader__.load + fetch）
 ├─ python/                    # 前端/模型共用的 Python 运行层（随包发布）
 │  ├─ kidturtle.py            # 纯 Python SVG 海龟记录器（注入成 turtle 模块）
 │  ├─ kidrunner.py            # 沙箱执行器：跑代码 → 捕获 stdout + 图形 → base64(JSON)

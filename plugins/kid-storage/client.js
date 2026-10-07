@@ -3,7 +3,7 @@
 // 由客户端模块表按「包名 = 模块 id」装载：window.__ModuleLoader__.load({id, factory})。
 //   React 来自模块表（require('react')），不需自带打包；
 //   数据走同源只读路由 GET /kid-storage/collect（由本包 host half 注册）。
-// 主题：🧳 仓库大管家 —— 把硬盘空间讲成“大仓库/行李箱”的小故事。
+// 主题：🐿️ 仓库大管家 —— 把硬盘空间讲成“大仓库/行李箱”的小故事。
 // 交互：点击标题折叠/展开，默认只留一行摘要。
 // 刻度：文件夹占用条走对数刻度，否则 GB 级目录与 KB 级目录差 5 个数量级，
 //       线性刻度会把小目录全压成同一条。
@@ -29,7 +29,7 @@ const CSS = `
   border-radius:24px;padding:16px 18px 14px;
   box-shadow:0 8px 24px rgba(230,160,60,.25),inset 0 0 0 2px rgba(255,255,255,.85);
   width:100%;max-width:100%;box-sizing:border-box;line-height:1.45;position:relative;overflow:hidden}
-.st-card::after{content:"🧳";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
+.st-card::after{content:"🐿️";position:absolute;right:14px;top:10px;font-size:26px;opacity:.9}
 .st-toggle{cursor:pointer;user-select:none}
 .st-toggle:hover .st-min{border-color:#e0973a}
 .st-min{display:flex;align-items:center;gap:10px;padding:6px 2px;border:2px dashed rgba(224,151,58,.4);border-radius:14px}
@@ -169,7 +169,7 @@ window.__ModuleLoader__.load({
       return React.createElement('div', { className: 'st-card' },
         React.createElement('div', { className: 'st-toggle', onClick: () => setExpanded(!expanded), title: expanded ? '收起详情' : '展开详情' },
           React.createElement('div', { className: 'st-min' },
-            React.createElement('span', { className: 'icon' }, '🧳'),
+            React.createElement('span', { className: 'icon' }, '🐿️'),
             React.createElement('span', { className: 't' }, '仓库大管家 · 电脑的东西装哪了'),
             React.createElement('span', { className: 'sum' }, sumText(d, err)),
             React.createElement('span', { className: 'badge', style: { background: '#e0932a' } }, badgeText(d)),
@@ -179,7 +179,7 @@ window.__ModuleLoader__.load({
 
           // 根卷空间仪表
           React.createElement('div', { className: 'st-gauge' },
-            React.createElement('div', { className: 'lbl' }, '🧳 大仓库还剩多少空位？'),
+            React.createElement('div', { className: 'lbl' }, '🐿️ 大仓库还剩多少空位？'),
             React.createElement('div', { className: 'bar' },
               React.createElement('span', { className: 'fill', style: { width: barW(root && root.pct) + '%' } })),
             React.createElement('div', { className: 'fig' },

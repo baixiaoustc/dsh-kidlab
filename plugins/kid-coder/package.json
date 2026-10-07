@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "给小朋友的编程学习启蒙插件：一个包 = 一张 🧑‍🏫「小教室·跑代码」卡片（真跑 Python/海龟画图）+ 五个模型工具（kid_run / kid_explain / kid_practice / kid_review / kid_steps），零第三方依赖、无构建步骤。",
+  "description": "给小朋友的编程学习启蒙插件：一个包 = 一张 🐵「小教室·跑代码」卡片（真跑 Python/海龟画图）+ 五个模型工具（kid_run / kid_explain / kid_practice / kid_review / kid_steps），零第三方依赖、无构建步骤。",
   "main": "index.js",
   "exports": {
     ".": "./index.js",
