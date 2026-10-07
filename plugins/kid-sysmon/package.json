@@ -1,37 +1,36 @@
 {
   "name": "@kidlab/dsh-kid-sysmon",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "MacBook 资源使用情况监控工具插件（DeepSeek Harness / Cordis）：查询 CPU、内存、磁盘、网络、电池、负载与 Top 进程的真实数据（免 sudo，无需第三方依赖）。",
-  "main": "lib/index.js",
-  "types": "lib/types/index.d.ts",
+  "description": "给小朋友的「电脑体检 / 资源监控」启蒙插件：一个包 = 一张 🐻「小熊体检」卡片 + 一个 system_status 工具，查 CPU/内存/磁盘/网络/电池/负载/Top 进程的真实数据（免 sudo，零第三方依赖，无构建）。",
+  "main": "index.js",
   "exports": {
-    ".": {
-      "types": "./lib/types/index.d.ts",
-      "default": "./lib/index.js"
-    }
+    ".": "./index.js",
+    "./client": "./client.js"
   },
   "files": [
-    "lib/index.js",
-    "lib/types/**/*.d.ts"
+    "index.js",
+    "tools.js",
+    "collect.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md"
   ],
-  "scripts": {
-    "build": "tsc -p tsconfig.json --noEmit",
-    "build:emit": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
   },
-  "peerDependencies": {
-    "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-tools": "*"
-  },
-  "devDependencies": {
-    "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-tools": "*",
-    "@deepseek-ai/schemastery": "*",
-    "typescript": "^5.5.0"
-  },
-  "dependencies": {
-    "@deepseek-ai/schemastery": "*"
-  }
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "kid",
+    "sysmon",
+    "system"
+  ],
+  "license": "MIT"
 }

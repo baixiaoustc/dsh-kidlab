@@ -1,7 +1,0 @@
-% file: kid-network.cordis.yml
-% sample loader: id/name must match package.json name.
-- insert:
-    - id: kid-network
-      name: "@kidlab/dsh-kid-network"
-      config:
-        enabled: true

@@ -1,36 +1,34 @@
 {
   "name": "@kidlab/dsh-kid-network",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "给小朋友的「网络启蒙」工具：查网络身份、看数据信怎么旅行、测网速、认家里网络设备、看网址翻译官（DeepSeek Harness / Cordis）工具插件。",
-  "main": "lib/index.js",
-  "types": "lib/types/index.d.ts",
+  "description": "给小朋友的网络启蒙插件：一个包 = 一张 🕊️「信鸽邮局」卡片 + 五个模型工具（net_my_identity / net_trace_trip / net_test_speed / net_who_is_home / net_dns），零第三方依赖、无构建步骤。",
+  "main": "index.js",
   "exports": {
-    ".": {
-      "types": "./lib/types/index.d.ts",
-      "default": "./lib/index.js"
-    }
+    ".": "./index.js",
+    "./client": "./client.js"
   },
   "files": [
-    "lib/index.js",
-    "lib/types/**/*.d.ts"
+    "index.js",
+    "tools.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md"
   ],
-  "scripts": {
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "build": "tsc -p tsconfig.json"
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
   },
-  "peerDependencies": {
-    "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-tools": "*"
-  },
-  "devDependencies": {
-    "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-tools": "*",
-    "@deepseek-ai/schemastery": "*",
-    "typescript": "^5.5.0"
-  },
-  "dependencies": {
-    "@deepseek-ai/schemastery": "*"
-  }
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "kid",
+    "network"
+  ],
+  "license": "MIT"
 }

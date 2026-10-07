@@ -1,9 +1,0 @@
-# 装载 kid-sysmon 插件示例。
-# 把 id 的 name 换成你在本地 build 出来的包名即可（对应 package.json 的 name）。
-- insert:
-    - id: kid-sysmon
-      name: '@kidlab/dsh-kid-sysmon'
-      config:
-        enabled: true
-        verbose: false
-        timeoutMs: 8000

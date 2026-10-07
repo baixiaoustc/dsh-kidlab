@@ -1,0 +1,11 @@
+# kid-sysmon 的安装补丁：往当前 profile 里插一行「小熊体检」。
+# 这一行同时提供：🐻 常驻卡片（client half，见 client.js）、system_status 工具
+# （host half，见 tools.js），以及卡片取数用的 GET /kid-sysmon/collect 路由（见 index.js）。
+# 不写 config 就是全默认（enabled: true，verbose: false，timeoutMs: 8000）。
+# 要改默认值，在自己的用户层补丁 ~/.dsh/cordis.patch.yml 里按 id 覆盖（同 id 的
+# insert 行不能共存，重复 id 会报错）：
+#   - id: kid-sysmon
+#     config: { verbose: true, timeoutMs: 12000 }
+- insert:
+    - id: kid-sysmon
+      name: '@kidlab/dsh-kid-sysmon'

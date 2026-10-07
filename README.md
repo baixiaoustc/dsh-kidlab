@@ -11,11 +11,11 @@
 |---|---|---|---|---|
 | **kid-coder** | 🧑‍🏫 | 编程启蒙：真的把 Python/海龟画图跑起来 | `kid_run` `kid_explain` `kid_practice` `kid_review` `kid_steps` | ✅ 单包 bundle（工具+卡片） |
 | **kid-process** | 🧑‍🏭 | 进程 = 工作台上干活的小工人 | `proc_count` `proc_busiest` `proc_family` `proc_badge` | ✅ 单包 bundle |
-| **kid-memory** | 🧠 | 内存 = 电脑的工作台 / 短期记忆 | `mem_now` `mem_pressure` `mem_workbench` `mem_top` | 🚧 工具型（卡片待并入） |
+| **kid-memory** | 🧠 | 内存 = 电脑的工作台 / 短期记忆 | `mem_now` `mem_pressure` `mem_workbench` `mem_top` | ✅ 单包 bundle（工具+卡片） |
 | **kid-storage** | 🧳 | 存储 = 电脑的大仓库 / 长期记忆 | `storage_boxes` `storage_home` `storage_heavy` | ✅ 单包 bundle |
-| **kid-network** | 🕊️ | 网络 = 信鸽邮局：身份 / 送信 / 测速 | `net_my_identity` `net_dns` `net_trace_trip` `net_test_speed` `net_who_is_home` | 🚧 工具型（卡片待并入） |
+| **kid-network** | 🕊️ | 网络 = 信鸽邮局：身份 / 送信 / 测速 | `net_my_identity` `net_dns` `net_trace_trip` `net_test_speed` `net_who_is_home` | ✅ 单包 bundle（工具+卡片） |
 | **kid-security** | 🏰 | 电脑安全 = 城堡守卫 | `sec_wall` `sec_lock` `sec_locker` `sec_door` `sec_login` | ✅ 单包 bundle |
-| **kid-sysmon** | 📊 | 电脑体检：CPU/内存/磁盘/网络/电池 | `system_status` | 🚧 工具型（无卡片） |
+| **kid-sysmon** | 🐻 | 电脑体检：CPU/内存/磁盘/网络/电池/负载/进程 | `system_status` | ✅ 单包 bundle（工具+体检卡片） |
 
 > 隐喻是成体系的：**内存 = 工作台（短期）** ↔ **存储 = 大仓库（长期）**；**进程 = 工作台上干活的小工人**；**网络 = 信鸽邮局**；**安全 = 城堡守卫**。
 

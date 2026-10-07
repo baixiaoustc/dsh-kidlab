@@ -1,7 +1,0 @@
-# 装载 kid-memory 插件示例。
-# 把 id 的 name 换成你在本地 build 出来的包名即可（对应 package.json 的 name）。
-- insert:
-    - id: kid-memory
-      name: '@kidlab/dsh-kid-memory'
-      config:
-        enabled: true
