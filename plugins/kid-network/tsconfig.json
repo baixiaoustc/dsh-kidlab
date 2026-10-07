@@ -1,0 +1,14 @@
+{
+  "extends": "../deepseek-harness/tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "declarationDir": "lib/types"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../deepseek-harness/vendor/cordis" },
+    { "path": "../deepseek-harness/vendor/schemastery" },
+    { "path": "../deepseek-harness/packages/core/tools" }
+  ]
+}

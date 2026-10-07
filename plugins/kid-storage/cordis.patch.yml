@@ -1,0 +1,9 @@
+# kid-storage 的安装补丁：往当前 profile 里插一行「仓库大管家」。
+# 这一行同时提供：🧳 卡片（client half）与 storage_boxes / storage_home / storage_heavy 三个工具（host half）。
+# 这里不写 config 就表示全用插件默认值。要改默认值，别改这个文件——
+# 在自己的用户层补丁（~/.dsh/cordis.patch.yml）里按 id 覆盖同名行即可：
+#   - id: kid-storage
+#     config: { timeoutMs: 12000, enabled: true }
+- insert:
+    - id: kid-storage
+      name: '@kidlab/dsh-kid-storage'

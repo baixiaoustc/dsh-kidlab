@@ -1,0 +1,12 @@
+# kid-security 的安装补丁：往当前 profile 里插一行「城堡守卫」。
+# 这一行同时提供两半：🏰 卡片（client half，见 client.js）与
+# sec_wall / sec_locker / sec_lock / sec_door / sec_login 五个模型工具（host half，见 tools.js）。
+# 这里不写 config 就是全用插件默认值（enabled: true，timeoutMs: 8000）。
+#
+# 要改默认值，别改这个文件——在自己的用户层补丁 ~/.dsh/cordis.patch.yml 里
+# 按 id 覆盖这一行（同 id 的 insert 行不能和这一行共存，会重复 id）：
+#   - id: kid-security
+#     config: { timeoutMs: 12000 }
+- insert:
+    - id: kid-security
+      name: '@kidlab/dsh-kid-security'

@@ -1,0 +1,36 @@
+{
+  "name": "@kidlab/dsh-kid-memory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "给小朋友的「内存/工作台」启蒙（DeepSeek Harness / Cordis）工具插件。",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-tools": "*"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "*"
+  }
+}

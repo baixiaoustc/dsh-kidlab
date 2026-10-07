@@ -1,0 +1,8 @@
+(version 1)
+(deny default)
+(allow process*)
+(allow sysctl-read)
+(allow file-read*)
+(allow file-write* (subpath "/tmp"))
+(allow ipc-posix-shm)
+(deny network*)
