@@ -201,7 +201,7 @@ window.__ModuleLoader__.load({
 
     // 卡片常驻：注册到输入条上方的 full-width 槽（conversation.input.dock），
     // 输入区不随对话滚动被划走，从而在页面上常驻展示。
-    // 顺序 8：排在 kid-coder/network(5)、kid-storage(6)、kid-memory(7) 之后，安检压轴。
+    // 顺序 10：排在 coder(5)/sysmon(6)/network(7)/storage(8)/memory(9) 之后、process(11) 之前。
     return {
       inject: ['slots'],
       apply(ctx) {

@@ -173,8 +173,7 @@ window.__ModuleLoader__.load({
     }
 
     // 卡片常驻：注册到输入条上方的 full-width 槽（conversation.input.dock）。
-    // 顺序 11：排在 goal(10) 之后、queue(20) 之前，
-    // 且不与 coder(5)/storage(6)/memory(7)/security(8)/process(9) 撞。
+    // 顺序 7：坐在 coder(5)/sysmon(6) 之后，storage(8)/memory(9)/security(10)/process(11) 之前。
     return {
       inject: ['slots'],
       apply(ctx) {

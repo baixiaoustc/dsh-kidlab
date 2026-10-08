@@ -31,7 +31,7 @@
 | **host · 工具** | `tools.js` | 四个模型工具：`mem_workbench` / `mem_now` / `mem_top` / `mem_pressure`。改成**普通对象**交给 `ctx.tools.register`，不 `import` 任何 `@deepseek-ai/*`（bundle 从 profile 的 `node_modules` 解析，link: 安装只能保证包内相对路径 + node 内置模块） |
 | **host · 路由** | `index.js` | 一条同源只读路由 `GET /kid-memory/collect` → 一份 JSON。具名路由在 shell 的鉴权门之前分发，页面同源 `fetch` 不需要 token；没有 `webServer` 时静默不注册，卡片自然不出现 |
 | **host · 采集** | `collect.js` | 取数逻辑：`sysctl -n hw.memsize` 拿总量、`memory_pressure -Q` 拿空闲率、macOS 自带 python3 读 `libproc` 按 App 聚合占用榜。纯 node 内置模块，可单独 `node` 跑 |
-| **client · 卡片** | `client.js` | 浏览器里的 🦉 卡片，注册到 `conversation.input.dock`（id `kid-memory`，order 7）。每 8 秒 `fetch('/kid-memory/collect', { cache: 'no-store' })` 刷一次；**整文件包在 IIFE 里**，避免和其它客户端的顶层声明撞车 |
+| **client · 卡片** | `client.js` | 浏览器里的 🦉 卡片，注册到 `conversation.input.dock`（id `kid-memory`，order 9）。每 8 秒 `fetch('/kid-memory/collect', { cache: 'no-store' })` 刷一次；**整文件包在 IIFE 里**，避免和其它客户端的顶层声明撞车 |
 
 数据是现采的，不是估的。一次采集要起 python 扫全部进程（约 0.3~2 秒），所以路由层带
 **5 秒缓存 + 在途请求合并**，多个页面同时打开也只扫一轮。
@@ -87,8 +87,8 @@ plugin_manager install_bundle /绝对路径/plugin-kid-memory
 由组件里的会话判断实现，不靠装载层面。改 `client.js` 顶部的白名单：
 
 ```js
-// 留空 [] = 每个会话都显示；填会话 id = 只在那些会话显示
-const ONLY_SESSIONS = ['session-8dc4b96e-0413-48f5-8f6e-e6c51e5de4e0']
+// 留空 [] = 每个会话都显示（当前就是这个）；填会话 id = 只在那些会话显示
+const ONLY_SESSIONS = []
 ```
 
 当前会话 id：终端执行 `echo $DSH_SESSION_ID`。改完要重启 `dsh web` 并刷新页面才生效。

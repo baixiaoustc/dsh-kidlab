@@ -53,7 +53,7 @@ plugin_manager install_bundle /绝对路径/plugin-kid-storage
 | 顶层 `inject = ['tools']` 换成 `ctx.inject(['tools'], …)` | 这样即使某个环境没有 `tools` 服务，路由也照样注册；工具在 `tools` 出现时才注册，且 `apply` 一定会执行 |
 
 路由（`/kid-storage/collect`）原先由卡片包注册，现在归 `index.js`，两个包不会再抢同一个路由和同一个
-dock 槽位 id（`kid-storage`，order 6）。
+dock 槽位 id（`kid-storage`，order 8）。
 
 ## 只想在某个会话显示卡片
 
@@ -61,8 +61,8 @@ dock 槽位 id（`kid-storage`，order 6）。
 会话判断实现，不靠装载层面。改 `client.js` 顶部的白名单：
 
 ```js
-// 留空 [] = 每个会话都显示；填会话 id = 只在那些会话显示
-const ONLY_SESSIONS = ['session-xxxxxxxx-....']
+// 留空 [] = 每个会话都显示（当前就是这个）；填会话 id = 只在那些会话显示
+const ONLY_SESSIONS = []
 ```
 
 当前会话 id：终端执行 `echo $DSH_SESSION_ID`。

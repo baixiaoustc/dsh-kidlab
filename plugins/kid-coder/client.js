@@ -177,7 +177,7 @@ window.__ModuleLoader__.load({
     }
 
     // 卡片常驻：注册到输入条上方的 full-width 槽（conversation.input.dock）。
-    // 顺序 5：排在 kid-storage(6)、kid-memory(7)、kid-security(8)、kid-process(9) 之前。
+    // 顺序 5：全套卡片里排第一（后面依次 sysmon(6)、network(7)、storage(8)、memory(9)、security(10)、process(11)）。
     return {
       inject: ['slots'],
       apply(ctx) {

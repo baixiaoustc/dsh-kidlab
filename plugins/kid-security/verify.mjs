@@ -140,7 +140,14 @@ console.log('\n[3] client half：__ModuleLoader__ 装载 → apply → 槽位注
 const styleTags = []
 const document = {
   querySelector: () => null,
-  createElement: () => ({ dataset: {}, attrs: {}, setAttribute(k, v) { this.attrs[k] = v }, textContent: '', remove() {} }),
+  // 完整模拟 <style> 元素：setAttribute 按真 DOM 规矩把 data-* 映到 dataset 驼峰键。
+  createElement: () => ({
+    dataset: {},
+    removed: false,
+    setAttribute(k, v) { this.dataset[k.replace(/^data-/, '').replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = v },
+    textContent: '',
+    remove() { this.removed = true },
+  }),
   head: { appendChild: (t) => styleTags.push(t) },
 }
 let registration = null
@@ -188,29 +195,36 @@ const React = {
 const mod = loaded.factory((name) => { if (name === 'react') return React; throw new Error('unexpected require ' + name) })
 ok(Array.isArray(mod.inject) && mod.inject.includes('slots'), 'declare inject: [slots]', JSON.stringify(mod.inject))
 mod.apply(ctxClient)
-ok(!!registration && registration.id === 'kid-security' && registration.order === 8, '已注册到 conversation.input.dock',
+ok(!!registration && registration.id === 'kid-security' && registration.order === 10, '已注册到 conversation.input.dock',
   registration && `id=${registration.id} order=${registration.order}`)
-ok(styleTags.length === 1 && styleTags[0].attrs['data-plugin-css'] === '@kidlab/dsh-kid-security/card.css',
-  '注入了自己的 <style data-plugin-css="…/card.css">', JSON.stringify(styleTags[0].attrs))
+ok(styleTags.length === 1 && styleTags[0].dataset.pluginCss === '@kidlab/dsh-kid-security/card.css',
+  '注入了自己的 <style data-plugin-css="…/card.css">', JSON.stringify(styleTags[0].dataset))
+ok(styleTags[0].dataset.plugin === '@kidlab/dsh-kid-security', '样式表带 data-plugin 标记', styleTags[0].dataset.plugin)
 ok(typeof cssInjector === 'function', '样式注册在 effect 里（可回收）')
 
 // ---------- 3b) 会话门禁 ----------
-console.log('\n[3b] 会话门禁：只有 ONLY_SESSIONS 里的会话才渲染')
+console.log('\n[3b] 会话门禁：ONLY_SESSIONS 的可见范围')
 const gateLine = /const ONLY_SESSIONS = \[([^\]]*)\]/.exec(clientSource)
 const allowedSessions = gateLine ? [...gateLine[1].matchAll(/'([^']*)'/g)].map((m) => m[1]) : []
 const OTHER_SESSION = 'session-00000000-0000-0000-0000-000000000000'
 const HERE = allowedSessions[0] || OTHER_SESSION
 globalThis.fetch = async () => { throw new Error('门禁测试不打网络') }
 const renderAs = (props) => { stateIndex = 0; return widget(props) }
-ok(allowedSessions.length > 0, 'client.js 里配了 ONLY_SESSIONS（非空 = 限定会话）', JSON.stringify(allowedSessions))
-ok(renderAs({ session: { sessionId: OTHER_SESSION }, input: null }) === null,
-  '别的会话：渲染 null（卡片不出现、轮询也不启动）')
-ok(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null }) === null,
-  '别的会话：顶层 sessionId 也照样挡住')
-const hereNode = renderAs({ session: { sessionId: HERE }, input: null })
-ok(!!hereNode && String(hereNode.props.className).includes('ks-card'), '本会话：通过 session.sessionId 正常渲染卡片',
-  hereNode ? 'className=' + hereNode.props.className : String(hereNode))
-ok(!!renderAs({ sessionId: HERE, input: null }), '本会话：通过顶层 sessionId 也认得出来')
+const isCard = (n) => !!n && String(n.props && n.props.className).includes('ks-card')
+if (allowedSessions.length === 0) {
+  ok(isCard(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null })),
+    'ONLY_SESSIONS 为空 = 所有会话都渲染')
+  ok(clientSource.includes('sessionIdOf'), '会话门禁的判定函数仍在（要限定会话时改白名单即可）')
+} else {
+  ok(!isCard(renderAs({ session: { sessionId: OTHER_SESSION }, input: null })),
+    '别的会话：渲染 null（卡片不出现、轮询也不启动）')
+  ok(!isCard(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null })),
+    '别的会话：顶层 sessionId 也照样挡住')
+  ok(isCard(renderAs({ session: { sessionId: allowedSessions[0] }, input: null })),
+    '本会话：通过 session.sessionId 正常渲染卡片')
+  ok(isCard(renderAs({ sessionId: allowedSessions[0], input: null })), '本会话：通过顶层 sessionId 也认得出来')
+  console.log('   · 本卡片只在 ' + allowedSessions.join(', ') + ' 这些会话里显示')
+}
 
 // ---------- 3c) 与已装卡片共存（指南第 13 节的坑） ----------
 console.log('\n[3c] 共存：本卡片 + kid-storage（已合并版）装进同一个全局作用域')
@@ -222,7 +236,7 @@ const sharedSandbox = {
 const sharedCtx = createContext(sharedSandbox)
 let coexErr = ''
 try {
-  for (const file of ['./client.js', '../plugin-kid-storage/client.js']) {
+  for (const file of ['./client.js', '../kid-storage/client.js']) {
     const src = readFileSync(new URL(file, import.meta.url), 'utf8')
     new Script(src).runInContext(sharedCtx)
   }

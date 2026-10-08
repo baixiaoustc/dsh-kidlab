@@ -223,7 +223,7 @@ window.__ModuleLoader__.load({
 
         React.createElement('div', { className: 'mem-list' },
           React.createElement('div', { className: 't' }, '🏃 谁在占着工作台'),
-          (rows.length ? rows : React.createElement('div', { className: 'mem-empty' }, '还没有扫描到数据…')),
+          (rows.length ? rows : React.createElement('div', { className: 'mem-empty' }, '还没看到数据…（长时间为空多半是进程查询被系统挡住了）')),
           (rows.length
             ? React.createElement('div', { className: 'mem-hint' }, '横条长度按比例：最长的那条就是占得最多的那个 ~')
             : null)),

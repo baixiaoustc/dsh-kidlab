@@ -97,9 +97,10 @@ check('数据走 fetch(PATH)（不再 host.call）', () => {
   assert.match(cli, /fetch\(PATH/)
   assert.ok(!/host\.call\(/.test(cli), '不应再有 host.call')
 })
-check('槽位 conversation.input.dock / id kid-sysmon', () => {
+check('槽位 conversation.input.dock / id kid-sysmon / order 6', () => {
   assert.match(cli, /conversation\.input\.dock/)
   assert.match(cli, /id: 'kid-sysmon'/)
+  assert.match(cli, /order: 6/)
 })
 
 console.log('')

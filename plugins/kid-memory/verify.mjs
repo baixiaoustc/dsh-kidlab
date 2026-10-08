@@ -256,8 +256,8 @@ const React = {
 const mod = loaded.factory((name) => { if (name === 'react') return React; throw new Error('unexpected require ' + name) })
 ok(Array.isArray(mod.inject) && mod.inject.includes('slots'), 'declare inject: [slots]', JSON.stringify(mod.inject))
 mod.apply(ctxClient)
-ok(!!registration && registration.id === 'kid-memory' && registration.order === 7,
-  '已注册到 conversation.input.dock（顺序 7，不与 coder5/storage6/security8/process9 撞）',
+ok(!!registration && registration.id === 'kid-memory' && registration.order === 9,
+  '已注册到 conversation.input.dock（顺序 9，座位 coder5/sysmon6/network7/storage8 之后、security10/process11 之前）',
   registration && `id=${registration.id} order=${registration.order}`)
 ok(registration.name === 'conversation.input.dock', '注册名就是槽位名')
 ok(styleTags.length === 1 && styleTags[0].dataset.plugin === '@kidlab/dsh-kid-memory', '注入了自己的 <style data-plugin>')

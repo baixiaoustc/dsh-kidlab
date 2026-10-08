@@ -192,7 +192,7 @@ window.__ModuleLoader__.load({
             React.createElement('div', { className: 't' }, '💪 谁这会儿最卖力？（干活强度 = CPU）'),
             (topRows.length
               ? topRows
-              : React.createElement('div', { className: 'kp-empty' }, '暂时没读到卖力的小工人…'))),
+              : React.createElement('div', { className: 'kp-empty' }, '没读到卖力的小工人…（可能是系统挡住了进程查询）'))),
 
           // 家族
           fam ? React.createElement('div', { className: 'kp-fam' },
@@ -238,7 +238,7 @@ window.__ModuleLoader__.load({
 
     // 卡片常驻：注册到输入条上方的 full-width 槽（conversation.input.dock），
     // 输入区不随对话滚动被划走，从而在页面上常驻展示。
-    // 顺序 9：排在 kid-coder/network/3d(5)、kid-storage(6)、kid-memory(7)、kid-security(8) 之后。
+    // 顺序 11（压轴）：排在 coder(5)/sysmon(6)/network(7)/storage(8)/memory(9)/security(10) 之后。
     return {
       inject: ['slots'],
       apply(ctx) {

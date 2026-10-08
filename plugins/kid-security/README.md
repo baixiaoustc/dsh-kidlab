@@ -86,21 +86,21 @@ plugin_manager install_bundle /Users/baixiao/Code/deepseek-harness-dev/plugin-ki
 
 ## 只想在某个会话显示卡片
 
-`client.js` 顶部有一行白名单（默认只在一个会话里显示，避免每个会话都挂一张城堡）：
+`client.js` 顶部有一行白名单（当前为空 = **每个会话都显示**）：
 
 ```js
-const ONLY_SESSIONS = ['session-0f874f0b-4256-410d-b95c-42ddae484b46']
+const ONLY_SESSIONS = []
 ```
 
-- 想在某些会话显示 → 把会话 id 加进去；`echo $DSH_SESSION_ID` 可以拿到当前会话 id。
-- 想**每个会话都显示** → 把这行改成 `const ONLY_SESSIONS = []`（空数组 = 不限会话）。
+- 想**只**在某些会话显示 → 把会话 id 填进去；`echo $DSH_SESSION_ID` 可以拿到当前会话 id。
+- 想恢复**每个会话都显示** → 留空 `const ONLY_SESSIONS = []`（空数组 = 不限会话）。
 
 白名单外的会话直接渲染 `null`：卡片不出现，轮询也不会启动（不白花算力）。
 
 ## 自检
 
 ```bash
-node verify.mjs                      # 端到端自检（66 项）：守卫判定 / 真机采集 / 路由 / 卡片装载 / 渲染 / 五个工具
+node verify.mjs                      # 端到端自检（67 项）：守卫判定 / 真机采集 / 路由 / 卡片装载 / 渲染 / 五个工具
 node verify-legacy-equivalence.mjs   # 与旧版 legacy/src/tools.ts 的文本级等价对照
 ```
 
@@ -135,6 +135,6 @@ node verify-legacy-equivalence.mjs   # 与旧版 legacy/src/tools.ts 的文本�
 | `collect.js` | 五道守卫的判定逻辑与取数（卡片路由与工具共用同一份判定） |
 | `client.js` | 卡片半部：模块表注册 + 槽位注入 + 轮询 + 样式（IIFE 包住，避免顶层标识符撞车） |
 | `cordis.patch.yml` | bundle 的 patch：一行 `insert` 装 `kid-security`（卡片 + 五个工具） |
-| `verify.mjs` | 本地端到端自检（66 项） |
+| `verify.mjs` | 本地端到端自检（67 项） |
 | `verify-legacy-equivalence.mjs` | 与旧版 TS 源码的文本级等价对照 |
 | `legacy/` | 旧的两份东西原样存档（`src/` `lib/` `cordis/` `example/` 等，以及 `old-card-package/`），只作对照，不发布不加载 |

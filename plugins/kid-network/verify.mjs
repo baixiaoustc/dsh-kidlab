@@ -264,10 +264,10 @@ check('数据走 fetch(PATH)（不再是 host.call / ctx.interval）', () => {
   assert.ok(!/host\.call\(/.test(cli), '不应再有 host.call')
   assert.ok(!/ctx\.interval\(/.test(cli), '不应再有沙箱 ctx.interval')
 })
-check('注册槽位 conversation.input.dock / id kid-network / order 11', () => {
+check('注册槽位 conversation.input.dock / id kid-network / order 7', () => {
   assert.match(cli, /conversation\.input\.dock/)
   assert.match(cli, /id: 'kid-network'/)
-  assert.match(cli, /order: 11/)
+  assert.match(cli, /order: 7/)
 })
 check('保留 🕊️ 信鸽邮局的视觉与字段', () => {
   for (const s of ['信鸽邮局 · 网络小探险', 'pg-card', 'pg-speed', 'pg-mail', '互联网身份证', '送信到三站']) {
@@ -334,11 +334,11 @@ const React = {
 const clientMod = loaded.factory((name) => { if (name === 'react') return React; throw new Error('unexpected require ' + name) })
 check('declare inject: [slots]', () => assert.ok(Array.isArray(clientMod.inject) && clientMod.inject.join(',') === 'slots'))
 clientMod.apply(ctxClient)
-check('已注册到 conversation.input.dock（id kid-network / order 11）', () => {
+check('已注册到 conversation.input.dock（id kid-network / order 7）', () => {
   assert.ok(registration)
   assert.equal(registration.name, 'conversation.input.dock')
   assert.equal(registration.id, 'kid-network')
-  assert.equal(registration.order, 11)
+  assert.equal(registration.order, 7)
 })
 check('注入了自己的 <style data-plugin-css="…/card.css">', () => {
   assert.equal(styleTags.length, 1)

@@ -246,7 +246,7 @@ if (HAS_PS) {
 } else {
   ok(countText.startsWith('[工人点名 采集失败]'), 'proc_count：被拦时给一行人话说明，不抛错',
     countText.slice(0, 40))
-  ok(busyText.startsWith('【谁最卖力 / 干活强度 Top】') && busyText.includes('暂时没有可读取的进程信息'),
+  ok(busyText.startsWith('【谁最卖力 / 干活强度 Top】') && busyText.includes('读不到进程信息'),
     'proc_busiest：被拦时给标题 + 一句人话说明（管道里的 head 没报错，所以走的是「空表」分支）',
     busyText.split('\n')[1])
   ok(famText.startsWith('[进程表 采集失败]'), 'proc_family：被拦时给一行人话说明')
@@ -335,8 +335,8 @@ const React = {
 const mod = loaded.factory((name) => { if (name === 'react') return React; throw new Error('unexpected require ' + name) })
 ok(Array.isArray(mod.inject) && mod.inject.includes('slots'), 'declare inject: [slots]', JSON.stringify(mod.inject))
 mod.apply(ctxClient)
-ok(!!registration && registration.id === 'kid-process' && registration.order === 9,
-  '已注册到 conversation.input.dock（顺序 9，排在 storage 6 / memory 7 / security 8 之后）',
+ok(!!registration && registration.id === 'kid-process' && registration.order === 11,
+  '已注册到 conversation.input.dock（顺序 11，排在 coder5/sysmon6/network7/storage8/memory9/security10 之后，压轴）',
   registration && `id=${registration.id} order=${registration.order}`)
 ok(registration.name === 'conversation.input.dock', '注册名就是槽位名')
 ok(styleTags.length === 1 && styleTags[0].dataset.plugin === '@kidlab/dsh-kid-process', '注入了自己的 <style data-plugin>')
@@ -346,7 +346,7 @@ cssInjector()
 ok(styleTags[0].removed === true, '样式回收函数把 <style> 摘掉（插件卸载不留痕）')
 
 // ---------- 3b) 会话门禁 ----------
-console.log('\n[3b] 会话门禁：只有 ONLY_SESSIONS 里的会话才渲染')
+console.log('\n[3b] 会话门禁：ONLY_SESSIONS 的可见范围')
 const gateLine = /const ONLY_SESSIONS = \[([^\]]*)\]/.exec(clientSource)
 const allowedSessions = gateLine ? [...gateLine[1].matchAll(/'([^']*)'/g)].map((m) => m[1]) : []
 const OTHER_SESSION = 'session-00000000-0000-0000-0000-000000000000'
@@ -354,18 +354,21 @@ const HERE = allowedSessions[0] || OTHER_SESSION
 // 门禁测试只判断“渲染了什么”，不碰网络：沙箱里真去 fetch 会直接段错误（exit 139）。
 globalThis.fetch = async () => { throw new Error('门禁测试不打网络') }
 const renderAs = (props) => { stateIndex = 0; return widget(props) }
-ok(allowedSessions.length > 0, 'client.js 里配了 ONLY_SESSIONS（非空 = 限定会话）', JSON.stringify(allowedSessions))
-ok(renderAs({ session: { sessionId: OTHER_SESSION }, input: null }) === null,
-  '别的会话：渲染 null（卡片不出现、轮询也不启动）')
-ok(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null }) === null,
-  '别的会话：顶层 sessionId 也照样挡住')
-const hereNode = renderAs({ session: { sessionId: HERE }, input: null })
-ok(!!hereNode && String(hereNode.props.className).includes('kp-card'),
-  '本会话：通过 owner prop session.sessionId 正常渲染卡片',
-  hereNode ? 'className=' + hereNode.props.className : String(hereNode))
-const hereFlat = renderAs({ sessionId: HERE, input: null })
-ok(!!hereFlat && String(hereFlat.props.className).includes('kp-card'),
-  '本会话：通过顶层 sessionId 也认得出来')
+const isCard = (n) => !!n && String(n.props && n.props.className).includes('kp-card')
+if (allowedSessions.length === 0) {
+  ok(isCard(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null })),
+    'ONLY_SESSIONS 为空 = 所有会话都渲染')
+  ok(clientSource.includes('sessionIdOf'), '会话门禁的判定函数仍在（要限定会话时改白名单即可）')
+} else {
+  ok(!isCard(renderAs({ session: { sessionId: OTHER_SESSION }, input: null })),
+    '别的会话：渲染 null（卡片不出现、轮询也不启动）')
+  ok(!isCard(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null })),
+    '别的会话：顶层 sessionId 也照样挡住')
+  ok(isCard(renderAs({ session: { sessionId: allowedSessions[0] }, input: null })),
+    '本会话：通过 owner prop session.sessionId 正常渲染卡片')
+  ok(isCard(renderAs({ sessionId: allowedSessions[0], input: null })), '本会话：通过顶层 sessionId 也认得出来')
+  console.log('   · 本卡片只在 ' + allowedSessions.join(', ') + ' 这些会话里显示')
+}
 
 // ---------- 4) 用假数据渲染 ----------
 console.log('\n[4] 用假数据渲染卡片（折叠摘要 → 展开明细）')

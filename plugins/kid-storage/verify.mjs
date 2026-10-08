@@ -110,7 +110,14 @@ console.log('\n[3] client half：__ModuleLoader__ 装载 → apply → 槽位注
 const styleTags = []
 const document = {
   querySelector: () => null,
-  createElement: () => ({ dataset: {}, textContent: '', remove() {} }),
+  // 完整模拟 <style> 元素：既支持 client 直接写 dataset，也支持 setAttribute（两种写法都常见）。
+  createElement: () => ({
+    dataset: {},
+    removed: false,
+    setAttribute(k, v) { this.dataset[k.replace(/^data-/, '').replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = v },
+    textContent: '',
+    remove() { this.removed = true },
+  }),
   head: { appendChild: (t) => styleTags.push(t) },
 }
 let registration = null
@@ -160,14 +167,17 @@ const React = {
 const mod = loaded.factory((name) => { if (name === 'react') return React; throw new Error('unexpected require ' + name) })
 ok(Array.isArray(mod.inject) && mod.inject.includes('slots'), 'declare inject: [slots]', JSON.stringify(mod.inject))
 mod.apply(ctxClient)
-ok(!!registration && registration.id === 'kid-storage' && registration.order === 6, '已注册到 conversation.input.dock',
+ok(!!registration && registration.id === 'kid-storage' && registration.order === 8, '已注册到 conversation.input.dock',
   registration && `id=${registration.id} order=${registration.order}`)
 ok(styleTags.length === 1 && styleTags[0].dataset.plugin === '@kidlab/dsh-kid-storage', '注入了自己的 <style data-plugin>')
+ok(styleTags[0].dataset.pluginCss === '@kidlab/dsh-kid-storage/card.css', '样式表带 data-plugin-css 标记（可回收）')
 ok(typeof cssInjector === 'function', '样式注册在 effect 里（可回收）')
 
 // ---------- 3b) 会话门禁 ----------
 // 允许列表直接从源码里读，避免测试里再抄一份会话 id（抄了就会与插件配置脱节）。
-console.log('\n[3b] 会话门禁：只有 ONLY_SESSIONS 里的会话才渲染')
+console.log('\n[3b] 会话门禁：ONLY_SESSIONS 的可见范围')
+// 允许列表直接从源码里读，避免测试里再抄一份（抄了就会与插件配置脱节）。
+// 两种情况都要绿：白名单为空 = 所有会话渲染；非空 = 只放行白名单（当前是空数组，见 3a2c3ed）。
 const gateLine = /const ONLY_SESSIONS = \[([^\]]*)\]/.exec(clientSource)
 const allowedSessions = gateLine ? [...gateLine[1].matchAll(/'([^']*)'/g)].map((m) => m[1]) : []
 const OTHER_SESSION = 'session-00000000-0000-0000-0000-000000000000'
@@ -175,18 +185,21 @@ const HERE = allowedSessions[0] || OTHER_SESSION
 // 门禁测试只要判断“渲染了什么”，不碰网络：沙箱里真去 fetch 会直接段错误（exit 139）。
 globalThis.fetch = async () => { throw new Error('门禁测试不打网络') }
 const renderAs = (props) => { stateIndex = 0; return widget(props) }
-ok(allowedSessions.length > 0, 'client.js 里配了 ONLY_SESSIONS（非空 = 限定会话）', JSON.stringify(allowedSessions))
-ok(renderAs({ session: { sessionId: OTHER_SESSION }, input: null }) === null,
-  '别的会话：渲染 null（卡片不出现、轮询也不启动）')
-ok(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null }) === null,
-  '别的会话：顶层 sessionId 也照样挡住')
-const hereNode = renderAs({ session: { sessionId: HERE }, input: null })
-ok(!!hereNode && String(hereNode.props.className).includes('st-card'),
-  '本会话：通过 owner prop session.sessionId 正常渲染卡片',
-  hereNode ? 'className=' + hereNode.props.className : String(hereNode))
-const hereFlat = renderAs({ sessionId: HERE, input: null })
-ok(!!hereFlat && String(hereFlat.props.className).includes('st-card'),
-  '本会话：通过顶层 sessionId 也认得出来')
+const isCard = (n) => !!n && String(n.props && n.props.className).includes('st-card')
+if (allowedSessions.length === 0) {
+  ok(isCard(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null })),
+    'ONLY_SESSIONS 为空 = 所有会话都渲染')
+  ok(clientSource.includes('sessionIdOf'), '会话门禁的判定函数仍在（要限定会话时改白名单即可）')
+} else {
+  ok(!isCard(renderAs({ session: { sessionId: OTHER_SESSION }, input: null })),
+    '别的会话：渲染 null（卡片不出现、轮询也不启动）')
+  ok(!isCard(renderAs({ sessionId: OTHER_SESSION, session: { sessionId: OTHER_SESSION }, input: null })),
+    '别的会话：顶层 sessionId 也照样挡住')
+  ok(isCard(renderAs({ session: { sessionId: allowedSessions[0] }, input: null })),
+    '本会话：通过 owner prop session.sessionId 正常渲染卡片')
+  ok(isCard(renderAs({ sessionId: allowedSessions[0], input: null })), '本会话：通过顶层 sessionId 也认得出来')
+  console.log('   · 本卡片只在 ' + allowedSessions.join(', ') + ' 这些会话里显示')
+}
 
 // ---------- 4) 用真实数据渲染 ----------
 // 渲染用的数据里塞两个假映像：这样「映像行」在任何一台机器上都能被测到，

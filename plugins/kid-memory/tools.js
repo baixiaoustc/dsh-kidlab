@@ -152,7 +152,9 @@ export function buildMemoryTools(config) {
         const raw = await safe('占用榜', 'ps -axo rss=,comm= | sort -rn | head -n 16', t)
         if (raw.startsWith('[占用榜')) return raw
         const out = ['【谁在占工作台 / 内存贪吃鬼 Top】']
-        if (!raw.trim()) return out.concat('（没有可读取的程序占用信息）').join('\n')
+        // 管道里带 head，ps 被拦时 head 仍退出 0 → raw 为空。所以如实说「读不到」，
+        // 不写成「真的没有程序在占内存」，避免把权限/沙箱问题误读成空数据。
+        if (!raw.trim()) return out.concat('（读不到程序占用信息——可能是系统拦住了进程查询，不一定是真的没有程序在占内存；稍后再试）').join('\n')
         let rank = 0
         for (const r of raw.split('\n').map(s => s.trim()).filter(Boolean)) {
           const m = r.match(/^(\d+)\s+(.+)$/)

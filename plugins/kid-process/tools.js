@@ -153,7 +153,9 @@ export function buildProcessTools(config) {
         const raw = await safe('卖力榜', 'ps -axo pcpu=,comm= | sort -rn | head -n 16', t)
         if (raw.startsWith('[卖力榜')) return raw
         const out = ['【谁最卖力 / 干活强度 Top】']
-        if (!raw.trim()) return out.concat('（暂时没有可读取的进程信息）').join('\n')
+        // 注意：管道里带 head，ps 被拦时 head 仍退出 0 → raw 为空。所以这里不写「真的没有进程」，
+        // 而是把「读不到」如实说出来，避免把权限/沙箱问题误读成「机器上真的没有进程」。
+        if (!raw.trim()) return out.concat('（读不到进程信息——可能是系统拦住了进程查询，不一定是真的没有；稍后再试）').join('\n')
         let rank = 0
         for (const r of raw.split('\n').map(s => s.trim()).filter(Boolean)) {
           const m = r.match(/^([\d.]+)\s+(.+)$/)
