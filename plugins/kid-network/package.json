@@ -1,7 +1,6 @@
 {
   "name": "@kidlab/dsh-kid-network",
   "version": "0.2.0",
-  "private": true,
   "type": "module",
   "description": "给小朋友的网络启蒙插件：一个包 = 一张 🕊️「信鸽邮局」卡片 + 五个模型工具（net_my_identity / net_trace_trip / net_test_speed / net_who_is_home / net_dns），零第三方依赖、无构建步骤。",
   "main": "index.js",
@@ -30,5 +29,18 @@
     "kid",
     "network"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baixiaoustc/dsh-kidlab.git",
+    "directory": "plugins/kid-network"
+  },
+  "homepage": "https://github.com/baixiaoustc/dsh-kidlab#readme",
+  "bugs": {
+    "url": "https://github.com/baixiaoustc/dsh-kidlab/issues"
+  },
+  "author": "baixiaoustc",
+  "publishConfig": {
+    "access": "public"
+  }
 }

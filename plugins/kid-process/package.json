@@ -1,7 +1,6 @@
 {
   "name": "@kidlab/dsh-kid-process",
   "version": "0.2.0",
-  "private": true,
   "type": "module",
   "description": "给小朋友的进程启蒙插件：一个包 = 一张 🐝 工人点名卡片 + 四个模型工具（proc_count / proc_busiest / proc_family / proc_badge），零第三方依赖、无构建步骤。",
   "main": "index.js",
@@ -31,5 +30,18 @@
     "kid",
     "process"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baixiaoustc/dsh-kidlab.git",
+    "directory": "plugins/kid-process"
+  },
+  "homepage": "https://github.com/baixiaoustc/dsh-kidlab#readme",
+  "bugs": {
+    "url": "https://github.com/baixiaoustc/dsh-kidlab/issues"
+  },
+  "author": "baixiaoustc",
+  "publishConfig": {
+    "access": "public"
+  }
 }

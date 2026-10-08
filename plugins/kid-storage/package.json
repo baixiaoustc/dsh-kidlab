@@ -1,7 +1,6 @@
 {
   "name": "@kidlab/dsh-kid-storage",
   "version": "0.2.0",
-  "private": true,
   "type": "module",
   "description": "给小朋友的「存储 / 大仓库」启蒙插件：分区全景 + 主目录占用榜 + 大件行李榜三个模型工具，外加一张常驻输入条上方的 🐿️ 卡片（DeepSeek Harness / Cordis）。",
   "main": "index.js",
@@ -25,5 +24,25 @@
       "platform": "web",
       "immediately": true
     }
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "kid",
+    "storage"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baixiaoustc/dsh-kidlab.git",
+    "directory": "plugins/kid-storage"
+  },
+  "homepage": "https://github.com/baixiaoustc/dsh-kidlab#readme",
+  "bugs": {
+    "url": "https://github.com/baixiaoustc/dsh-kidlab/issues"
+  },
+  "author": "baixiaoustc",
+  "publishConfig": {
+    "access": "public"
   }
 }

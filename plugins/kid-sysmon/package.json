@@ -1,7 +1,6 @@
 {
   "name": "@kidlab/dsh-kid-sysmon",
   "version": "0.2.0",
-  "private": true,
   "type": "module",
   "description": "给小朋友的「电脑体检 / 资源监控」启蒙插件：一个包 = 一张 🐻「小熊体检」卡片 + 一个 system_status 工具，查 CPU/内存/磁盘/网络/电池/负载/Top 进程的真实数据（免 sudo，零第三方依赖，无构建）。",
   "main": "index.js",
@@ -32,5 +31,18 @@
     "sysmon",
     "system"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baixiaoustc/dsh-kidlab.git",
+    "directory": "plugins/kid-sysmon"
+  },
+  "homepage": "https://github.com/baixiaoustc/dsh-kidlab#readme",
+  "bugs": {
+    "url": "https://github.com/baixiaoustc/dsh-kidlab/issues"
+  },
+  "author": "baixiaoustc",
+  "publishConfig": {
+    "access": "public"
+  }
 }
