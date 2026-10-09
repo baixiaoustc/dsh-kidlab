@@ -1,5 +1,7 @@
 # dsh-kid-sysmon · 给小朋友的「电脑体检」启蒙插件（kidlab 系列）
 
+> 📦 npm：[`@kidlab/dsh-kid-sysmon`](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-sysmon)　·　安装：`dsh plugin --profile web add @kidlab/dsh-kid-sysmon`（或 `npm i @kidlab/dsh-kid-sysmon`）
+
 为 **DeepSeek Harness** 写的插件：把「这台电脑累不累」变成小朋友一眼能看懂的 🐻 体检卡，
 外加一个给模型用的 `system_status` 工具。
 

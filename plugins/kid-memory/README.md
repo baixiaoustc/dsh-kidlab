@@ -1,5 +1,7 @@
 # @kidlab/dsh-kid-memory · 🦉 记忆小管家
 
+> 📦 npm：[`@kidlab/dsh-kid-memory`](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-memory)　·　安装：`dsh plugin --profile web add @kidlab/dsh-kid-memory`（或 `npm i @kidlab/dsh-kid-memory`）
+
 给小朋友的**内存启蒙**插件（DeepSeek Harness / Cordis 静态 bundle）。把内存讲成
 **「电脑的工作台 / 短期记忆」**：我同时摊开了多少东西、还空着多少、是哪个程序最占地方。
 

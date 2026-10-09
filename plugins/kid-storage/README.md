@@ -1,5 +1,7 @@
 # @kidlab/dsh-kid-storage · 仓库大管家
 
+> 📦 npm：[`@kidlab/dsh-kid-storage`](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-storage)　·　安装：`dsh plugin --profile web add @kidlab/dsh-kid-storage`（或 `npm i @kidlab/dsh-kid-storage`）
+
 给小朋友的存储启蒙插件（DeepSeek Harness / Cordis bundle）。**一个包 = 一张卡片 + 三个工具**，
 零第三方依赖、无构建步骤，装完即用。
 

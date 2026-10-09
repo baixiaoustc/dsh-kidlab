@@ -1,5 +1,7 @@
 # @kidlab/dsh-kid-security · 电脑安全城堡守卫
 
+> 📦 npm：[`@kidlab/dsh-kid-security`](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-security)　·　安装：`dsh plugin --profile web add @kidlab/dsh-kid-security`（或 `npm i @kidlab/dsh-kid-security`）
+
 给小朋友讲「这台电脑安不安全」的插件：**一个包 = 一张卡片 + 五个工具**，零第三方依赖、无构建步骤，装完即用。
 
 把电脑讲成一座**小城堡**，安全的每一件事都是一道守卫：

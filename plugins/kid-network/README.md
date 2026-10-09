@@ -1,5 +1,7 @@
 # @kidlab/dsh-kid-network · 🕊️ 信鸽邮局（网络小探险）
 
+> 📦 npm：[`@kidlab/dsh-kid-network`](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-network)　·　安装：`dsh plugin --profile web add @kidlab/dsh-kid-network`（或 `npm i @kidlab/dsh-kid-network`）
+
 给小朋友的「网络启蒙」插件：**一个包 = 一张卡片 + 五个工具**，零第三方依赖、无构建步骤，装完即用。
 它是 kid 系列成员之一（同族：`kid-coder` 编程、`kid-process` 进程、`kid-storage` 仓库、`kid-memory` 工作台、`kid-security` 城堡守卫）。
 

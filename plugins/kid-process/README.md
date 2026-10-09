@@ -1,5 +1,7 @@
 # @kidlab/dsh-kid-process · 工人点名（进程小工人）
 
+> 📦 npm：[`@kidlab/dsh-kid-process`](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-process)　·　安装：`dsh plugin --profile web add @kidlab/dsh-kid-process`（或 `npm i @kidlab/dsh-kid-process`）
+
 给小朋友讲「电脑里现在有多少小工人在干活」的插件：**一个包 = 一张卡片 + 四个工具**，零第三方依赖、无构建步骤，装完即用。
 它是 `kid-coder / kid-sysmon / kid-network / kid-storage / kid-memory / kid-security` 之后的第 7 个，也是**最后一个**从 0.1 动态创作形态搬过来的。
 

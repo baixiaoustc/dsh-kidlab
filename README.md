@@ -1,21 +1,26 @@
 # dsh-kidlab · 给小朋友的电脑启蒙插件系列
 
+[![npm @kidlab/dsh-kid-coder](https://img.shields.io/npm/v/%40kidlab%2Fdsh-kid-coder?label=%40kidlab%2Fdsh-kid-coder&color=blue)](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-coder) [![npm @kidlab/dsh-kid-sysmon](https://img.shields.io/npm/v/%40kidlab%2Fdsh-kid-sysmon?label=%40kidlab%2Fdsh-kid-sysmon&color=blue)](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-sysmon) [![npm @kidlab/dsh-kid-network](https://img.shields.io/npm/v/%40kidlab%2Fdsh-kid-network?label=%40kidlab%2Fdsh-kid-network&color=blue)](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-network) [![npm @kidlab/dsh-kid-storage](https://img.shields.io/npm/v/%40kidlab%2Fdsh-kid-storage?label=%40kidlab%2Fdsh-kid-storage&color=blue)](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-storage) [![npm @kidlab/dsh-kid-memory](https://img.shields.io/npm/v/%40kidlab%2Fdsh-kid-memory?label=%40kidlab%2Fdsh-kid-memory&color=blue)](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-memory) [![npm @kidlab/dsh-kid-security](https://img.shields.io/npm/v/%40kidlab%2Fdsh-kid-security?label=%40kidlab%2Fdsh-kid-security&color=blue)](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-security) [![npm @kidlab/dsh-kid-process](https://img.shields.io/npm/v/%40kidlab%2Fdsh-kid-process?label=%40kidlab%2Fdsh-kid-process&color=blue)](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-process)
+
 给 **DeepSeek Harness**（`@deepseek-ai/dsh-*`，Cordis 插件框架）写的一整**系列**插件，
 用小朋友听得懂的话 + 能动手玩的卡片，把「电脑里到底在发生什么」讲明白。
 
 统一命名空间 `@kidlab/*`。**一个仓库 = 一个系列**：每个插件一个子目录，新增插件就是加一个目录。
 
+> 📦 **已发布到 npm**：7 个包均在 <https://www.npmjs.com/org/kidlab> 下（`@kidlab/dsh-kid-*@0.2.0`）。装法见下方「安装 → C」。
+> `npm i @kidlab/dsh-kid-coder` / `dsh plugin --profile web add @kidlab/dsh-kid-coder`
+
 ## 系列成员（第一批 7 个）
 
 | # | 插件 | 吉祥物 | 讲什么 | 模型工具 | 形态 |
 |---|---|---|---|---|---|
-| 1 | **kid-coder** | 🐵 | 编程启蒙：真的把 Python/海龟画图跑起来 | `kid_run` `kid_explain` `kid_practice` `kid_review` `kid_steps` | ✅ 单包 bundle（工具+卡片） |
-| 2 | **kid-sysmon** | 🐻 | 电脑体检：CPU/内存/磁盘/网络/电池/负载/进程 | `system_status` | ✅ 单包 bundle（工具+体检卡片） |
-| 3 | **kid-network** | 🕊️ | 网络 = 信鸽邮局：身份 / 送信 / 测速 | `net_my_identity` `net_dns` `net_trace_trip` `net_test_speed` `net_who_is_home` | ✅ 单包 bundle（工具+卡片） |
-| 4 | **kid-storage** | 🐿️ | 存储 = 电脑的大仓库 / 长期记忆 | `storage_boxes` `storage_home` `storage_heavy` | ✅ 单包 bundle |
-| 5 | **kid-memory** | 🦉 | 内存 = 电脑的工作台 / 短期记忆 | `mem_now` `mem_pressure` `mem_workbench` `mem_top` | ✅ 单包 bundle（工具+卡片） |
-| 6 | **kid-security** | 🐕 | 电脑安全 = 城堡守卫 | `sec_wall` `sec_lock` `sec_locker` `sec_door` `sec_login` | ✅ 单包 bundle |
-| 7 | **kid-process** | 🐝 | 进程 = 工作台上干活的小工人 | `proc_count` `proc_busiest` `proc_family` `proc_badge` | ✅ 单包 bundle |
+| 1 | [**kid-coder**](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-coder) | 🐵 | 编程启蒙：真的把 Python/海龟画图跑起来 | `kid_run` `kid_explain` `kid_practice` `kid_review` `kid_steps` | ✅ 单包 bundle（工具+卡片） |
+| 2 | [**kid-sysmon**](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-sysmon) | 🐻 | 电脑体检：CPU/内存/磁盘/网络/电池/负载/进程 | `system_status` | ✅ 单包 bundle（工具+体检卡片） |
+| 3 | [**kid-network**](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-network) | 🕊️ | 网络 = 信鸽邮局：身份 / 送信 / 测速 | `net_my_identity` `net_dns` `net_trace_trip` `net_test_speed` `net_who_is_home` | ✅ 单包 bundle（工具+卡片） |
+| 4 | [**kid-storage**](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-storage) | 🐿️ | 存储 = 电脑的大仓库 / 长期记忆 | `storage_boxes` `storage_home` `storage_heavy` | ✅ 单包 bundle |
+| 5 | [**kid-memory**](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-memory) | 🦉 | 内存 = 电脑的工作台 / 短期记忆 | `mem_now` `mem_pressure` `mem_workbench` `mem_top` | ✅ 单包 bundle（工具+卡片） |
+| 6 | [**kid-security**](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-security) | 🐕 | 电脑安全 = 城堡守卫 | `sec_wall` `sec_lock` `sec_locker` `sec_door` `sec_login` | ✅ 单包 bundle |
+| 7 | [**kid-process**](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-process) | 🐝 | 进程 = 工作台上干活的小工人 | `proc_count` `proc_busiest` `proc_family` `proc_badge` | ✅ 单包 bundle |
 
 > 隐喻是成体系的：**内存 = 工作台（短期）** ↔ **存储 = 大仓库（长期）**；**进程 = 工作台上干活的小工人**；**网络 = 信鸽邮局**；**安全 = 城堡守卫**。
 
@@ -36,6 +41,11 @@ dsh plugin --profile web add /本仓库/plugins/kid-coder
 
 # B. 从 GitHub 安装
 dsh plugin --profile web add github:baixiaoustc/dsh-kidlab#path:plugins/kid-coder
+
+# C. 从 npm 安装（已发布，按包名最省事）
+dsh plugin --profile web add @kidlab/dsh-kid-coder
+#   或直接： npm i @kidlab/dsh-kid-coder
+#   其余同理：@kidlab/dsh-kid-{sysmon,network,storage,memory,security,process}
 ```
 
 装完**首次需要重启 `dsh web`**（进客户端模块表），之后改内容只要刷新页面。

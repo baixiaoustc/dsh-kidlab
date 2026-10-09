@@ -1,5 +1,7 @@
 # dsh-kid-coder · 给小朋友的编程学习启蒙插件（🥇 kidlab 系列第 1 个）
 
+> 📦 npm：[`@kidlab/dsh-kid-coder`](https://www.npmjs.com/package/%40kidlab%2Fdsh-kid-coder)　·　安装：`dsh plugin --profile web add @kidlab/dsh-kid-coder`（或 `npm i @kidlab/dsh-kid-coder`）
+
 为 **DeepSeek Harness**（`@deepseek-ai/dsh-*`，Cordis 插件框架）写的小插件：
 把「解释概念、出题、改作业、拆步骤、**真的跑代码看效果**」变成小朋友听得懂、有兴趣的对话。
 
