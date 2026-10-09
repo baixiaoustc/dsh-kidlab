@@ -51,13 +51,6 @@ dsh plugin --profile web add @kidlab/dsh-kid-coder
 装完**首次需要重启 `dsh web`**（进客户端模块表），之后改内容只要刷新页面。
 每个插件目录里的 `README.md` 有各自的细节与配置项。
 
-## 怎么加一个新插件（保持系列感）
-
-1. 在 `plugins/` 下新建 `kid-<名字>/`，照搬任一 `bundle` 型插件的四件套：
-   `index.js`（host：注册工具 + `webServer.register` 路由）、`tools.js`（工具定义）、`client.js`（卡片，**必须 IIFE 包裹**）、`cordis.patch.yml`（`- insert: - id: kid-<名字> / name: '@kidlab/dsh-kid-<名字>'`）。
-2. `package.json`：`name: @kidlab/dsh-kid-<名字>`、`type: module`、`main/exports`、`dsh.bundle.patch`、`dsh.client.platform: web`、`keywords: ["dsh","dsh-plugin","kid", ...]`。
-3. 加 `verify.mjs`（本地自测），再补本表一行 + 自己的 `README.md`。
-
 ## 许可
 
 MIT。详见 [LICENSE](./LICENSE)。
