@@ -26,11 +26,20 @@
 
 ## 卡片长什么样（演示）
 
-![kid-coder 卡片：小海龟画五角星](docs/kid-coder-demo.gif)
+每个插件在对话输入框上方都有一个**可折叠卡片**：平时只留一行摘要，点标题展开看明细。
+下面是 7 张卡片的**真实录屏动图**（不是截图拼的）：
 
-> 上面是 **kid-coder** 🐵 卡片：打开就把自带的 Python 海龟程序跑起来，画出五角星；
-> 孩子可以改代码、点「跑一下」重跑。`README 里放 GIF` 的意思就是——**首页放一小段几秒的录屏动图**，
-> 让人不用装就能一眼看到卡片真实的样子和交互。
+| 插件 | 演示 |
+|---|---|
+| 🐵 **kid-coder** · 跑代码 | ![kid-coder](docs/kid-coder-demo.gif) |
+| 🐻 **kid-sysmon** · 电脑体检 | ![kid-sysmon](docs/kid-sysmon-demo.gif) |
+| 🕊️ **kid-network** · 信鸽邮局 | ![kid-network](docs/kid-network-demo.gif) |
+| 🐿️ **kid-storage** · 仓库大管家 | ![kid-storage](docs/kid-storage-demo.gif) |
+| 🦉 **kid-memory** · 记忆小管家 | ![kid-memory](docs/kid-memory-demo.gif) |
+| 🐕 **kid-security** · 城堡安检 | ![kid-security](docs/kid-security-demo.gif) |
+| 🐝 **kid-process** · 工人点名 | ![kid-process](docs/kid-process-demo.gif) |
+
+> `README 里放 GIF` 的意思就是——**首页放一小段几秒的录屏动图**，让人不用装就能一眼看到卡片真实的样子和交互。
 
 ## 系列约定（保证「一眼是同一套」）
 
