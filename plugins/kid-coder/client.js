@@ -21,6 +21,7 @@ const ONLY_SESSIONS = []
 
 const CSS = `
 .kc-card{font-family:-apple-system,"PingFang SC","Segoe UI",sans-serif;color:#2e3a4d;
+  flex:0 0 auto;
   background:linear-gradient(150deg,#f4f8ff 0%,#e8f0ff 55%,#dce9ff 100%);
   border-radius:24px;padding:16px 18px 14px;
   box-shadow:0 8px 24px rgba(70,120,220,.22),inset 0 0 0 2px rgba(255,255,255,.85);
@@ -62,6 +63,7 @@ const DEFAULT_CODE = `import turtle
 t = turtle.Turtle()
 t.speed(4)
 t.color("#3a86a8")
+t.pensize(6)   # 线粗一点，看得更清楚
 # 画一个五角星
 for i in range(5):
     t.forward(120)
