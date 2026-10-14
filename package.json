@@ -1,0 +1,29 @@
+{
+  "name": "@kidlab/dsh-kidlab",
+  "version": "0.2.0",
+  "private": true,
+  "description": "给小朋友讲电脑的 DeepSeek Harness 插件系列：7 张会说话的启蒙卡片（编程 / 内存 / 网络 / 系统监控 / 存储 / 安全 / 进程）。",
+  "type": "module",
+  "workspaces": [
+    "plugins/*"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "kidlab",
+    "education",
+    "children",
+    "plugins"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baixiaoustc/dsh-kidlab.git"
+  },
+  "homepage": "https://github.com/baixiaoustc/dsh-kidlab#readme",
+  "bugs": {
+    "url": "https://github.com/baixiaoustc/dsh-kidlab/issues"
+  },
+  "author": "baixiaoustc"
+}
