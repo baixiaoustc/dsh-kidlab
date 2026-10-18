@@ -1,10 +1,10 @@
 import { Context } from '@deepseek-ai/cordis'
 import { registerKid3dCard } from './card.ts'
-import { Config, type Kid3dConfig } from './config.ts'
+import { Config, DEFAULT_CONFIG, type Kid3dConfig } from './config.ts'
 import { buildKid3dTools } from './tools.ts'
 
 export const name = 'kid-3d'
-export { Config }
+export { Config, DEFAULT_CONFIG }
 export type { Kid3dConfig }
 
 /**
@@ -32,7 +32,10 @@ export type { Kid3dConfig }
  * profile 里本插件照样激活，路由照常挂（卡片还在）；反过来 headless 启动没有
  * webServer，就只剩工具。
  */
-export function apply(ctx: Context, config: Kid3dConfig) {
+export function apply(ctx: Context, raw?: Partial<Kid3dConfig>) {
+  // 静态 bundle 的行常常不写 config；加载器未注入 schema 默认值时 raw 为 undefined，
+  // 这里用 DEFAULT_CONFIG 兜底，保证后面 config.enabled / workDir / unitMm 一定存在。
+  const config: Kid3dConfig = { ...DEFAULT_CONFIG, ...(raw ?? {}) }
   if (config.enabled) {
     ctx.inject(['tools'], (child) => {
       child.effect(() => {

@@ -1107,61 +1107,63 @@ function numberParam(params, key, fallback) {
   return Number.isFinite(value) ? value : fallback;
 }
 function registerKid3dCard(ctx, config) {
-  const webServer = ctx.get("webServer");
-  if (webServer === void 0) return;
-  const sessions = ctx.get("sessions");
-  const at = (sessionId) => {
-    const cwd = sessionId === null ? void 0 : sessions?.get(sessionId)?.header.cwd;
-    if (cwd === void 0) return { paths: pathsFor(process.cwd(), config.workDir), from: "process" };
-    return { paths: pathsFor(cwd, config.workDir), from: "session" };
-  };
-  const stateRoute = {
-    kind: "exact",
-    path: STATE_PATH,
-    async handler(req, res) {
-      if (!methodAllowed(req, res)) return;
-      const { paths, from: from3 } = at(query(req).get("session"));
-      try {
-        const state = await collectCardState(paths, config, from3);
-        send(req, res, 200, "application/json; charset=utf-8", JSON.stringify(state));
-      } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        send(req, res, 500, "application/json; charset=utf-8", JSON.stringify({ error: message }));
-      }
-    }
-  };
-  const previewRoute = {
-    kind: "exact",
-    path: PREVIEW_PATH,
-    async handler(req, res) {
-      if (!methodAllowed(req, res)) return;
-      const params = query(req);
-      const { paths } = at(params.get("session"));
-      try {
-        const model = await readModel(paths);
-        if (model === void 0) {
-          send(req, res, 404, "application/json; charset=utf-8", JSON.stringify({ error: "\u8FD8\u6CA1\u5F00\u5DE5\u574A" }));
-          return;
+  ctx.inject(["webServer"], (child) => {
+    const webServer = child.get("webServer");
+    if (webServer === void 0) return;
+    const sessions = child.get("sessions");
+    const at = (sessionId) => {
+      const cwd = sessionId === null ? void 0 : sessions?.get(sessionId)?.header.cwd;
+      if (cwd === void 0) return { paths: pathsFor(process.cwd(), config.workDir), from: "process" };
+      return { paths: pathsFor(cwd, config.workDir), from: "session" };
+    };
+    const stateRoute = {
+      kind: "exact",
+      path: STATE_PATH,
+      async handler(req, res) {
+        if (!methodAllowed(req, res)) return;
+        const { paths, from: from3 } = at(query(req).get("session"));
+        try {
+          const state = await collectCardState(paths, config, from3);
+          send(req, res, 200, "application/json; charset=utf-8", JSON.stringify(state));
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          send(req, res, 500, "application/json; charset=utf-8", JSON.stringify({ error: message }));
         }
-        const rawView = params.get("view") ?? "";
-        const view = VIEW_NAMES.includes(rawView) ? rawView : "iso";
-        const svg = renderSvg(model, buildMesh(model), {
-          view,
-          spin: clamp2(numberParam(params, "spin", 0), 0, 360),
-          zoom: 1,
-          grid: params.get("grid") === "1",
-          width: clamp2(numberParam(params, "w", 560), MIN_WIDTH, MAX_WIDTH),
-          height: clamp2(numberParam(params, "h", 400), MIN_HEIGHT, MAX_HEIGHT)
-        });
-        send(req, res, 200, "image/svg+xml; charset=utf-8", svg.svg);
-      } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        send(req, res, 500, "application/json; charset=utf-8", JSON.stringify({ error: message }));
       }
-    }
-  };
-  ctx.effect(() => webServer.register(stateRoute), "kid-3d: card state route");
-  ctx.effect(() => webServer.register(previewRoute), "kid-3d: card preview route");
+    };
+    const previewRoute = {
+      kind: "exact",
+      path: PREVIEW_PATH,
+      async handler(req, res) {
+        if (!methodAllowed(req, res)) return;
+        const params = query(req);
+        const { paths } = at(params.get("session"));
+        try {
+          const model = await readModel(paths);
+          if (model === void 0) {
+            send(req, res, 404, "application/json; charset=utf-8", JSON.stringify({ error: "\u8FD8\u6CA1\u5F00\u5DE5\u574A" }));
+            return;
+          }
+          const rawView = params.get("view") ?? "";
+          const view = VIEW_NAMES.includes(rawView) ? rawView : "iso";
+          const svg = renderSvg(model, buildMesh(model), {
+            view,
+            spin: clamp2(numberParam(params, "spin", 0), 0, 360),
+            zoom: 1,
+            grid: params.get("grid") === "1",
+            width: clamp2(numberParam(params, "w", 560), MIN_WIDTH, MAX_WIDTH),
+            height: clamp2(numberParam(params, "h", 400), MIN_HEIGHT, MAX_HEIGHT)
+          });
+          send(req, res, 200, "image/svg+xml; charset=utf-8", svg.svg);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          send(req, res, 500, "application/json; charset=utf-8", JSON.stringify({ error: message }));
+        }
+      }
+    };
+    child.effect(() => webServer.register(stateRoute), "kid-3d: card state route");
+    child.effect(() => webServer.register(previewRoute), "kid-3d: card preview route");
+  });
 }
 
 // ../../../deepseek-harness-dev/deepseek-harness/vendor/cosmokit/src/misc.ts
@@ -2104,6 +2106,16 @@ defineMethod("transform", [
 ], ({ inner }, isInner) => inner.toString(isInner));
 
 // src/config.ts
+var DEFAULT_CONFIG = {
+  enabled: true,
+  timeoutMs: 8e3,
+  workDir: "kid3d",
+  defaultSize: 16,
+  maxPieces: 300,
+  unitMm: 5,
+  interactiveMaxFaces: 1200,
+  dragOrbit: true
+};
 var Config = Schema.intersect([
   Schema.object({
     enabled: Schema.boolean().description("\u542F\u7528\u6574\u5957\u5DE5\u5177").default(true),
@@ -10392,7 +10404,8 @@ ${TEMPLATES.map(
 
 // src/index.ts
 var name = "kid-3d";
-function apply(ctx, config) {
+function apply(ctx, raw) {
+  const config = { ...DEFAULT_CONFIG, ...raw ?? {} };
   if (config.enabled) {
     ctx.inject(["tools"], (child) => {
       child.effect(() => {

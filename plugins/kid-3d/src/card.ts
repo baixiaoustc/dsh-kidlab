@@ -226,9 +226,12 @@ function numberParam(params: URLSearchParams, key: string, fallback: number): nu
  * @param config - 卡片用到的配置（workDir/unitMm）
  */
 export function registerKid3dCard(ctx: Context, config: CardConfig): void {
-  const webServer = ctx.get('webServer')
-  if (webServer === undefined) return
-  const sessions = ctx.get('sessions')
+  // webServer 由 dsh-web-app 提供，插件挂载顺序不保证 apply 时它已就位；
+  // 用 inject 等它就绪再挂路由（headless 启动没有 webServer，回调不触发 = 静默跳过）。
+  ctx.inject(['webServer'], (child) => {
+    const webServer = child.get('webServer')
+    if (webServer === undefined) return
+    const sessions = child.get('sessions')
 
   const at = (sessionId: string | null): { paths: Paths; from: 'session' | 'process' } => {
     const cwd = sessionId === null ? undefined : sessions?.get(sessionId as SessionId)?.header.cwd
@@ -283,6 +286,7 @@ export function registerKid3dCard(ctx: Context, config: CardConfig): void {
     },
   }
 
-  ctx.effect(() => webServer.register(stateRoute), 'kid-3d: card state route')
-  ctx.effect(() => webServer.register(previewRoute), 'kid-3d: card preview route')
+    child.effect(() => webServer.register(stateRoute), 'kid-3d: card state route')
+    child.effect(() => webServer.register(previewRoute), 'kid-3d: card preview route')
+  })
 }

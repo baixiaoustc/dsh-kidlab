@@ -25,6 +25,24 @@ export interface Kid3dConfig {
   dragOrbit: boolean
 }
 
+/**
+ * 默认配置。每个字段都与下方 Schema 的 `.default(...)` 保持一致。
+ *
+ * host 的 apply 会用它兜底：静态 bundle 的行里通常不写 `config`，
+ * 若加载器没有按 `Config` schema 注入默认值，`config` 就是 undefined；
+ * 这里归一化后，`config.enabled` 等字段一定存在。
+ */
+export const DEFAULT_CONFIG: Kid3dConfig = {
+  enabled: true,
+  timeoutMs: 8000,
+  workDir: 'kid3d',
+  defaultSize: 16,
+  maxPieces: 300,
+  unitMm: 5,
+  interactiveMaxFaces: 1200,
+  dragOrbit: true,
+}
+
 export const Config = Schema.intersect([
   Schema.object({
     enabled: Schema.boolean().description('启用整套工具').default(true),
