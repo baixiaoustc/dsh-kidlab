@@ -1,0 +1,51 @@
+{
+  "name": "@kidlab/dsh-kid-3d",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "给小朋友的「小小 3D 积木工坊」：8 个模型工具（开工坊 / 放积木 / 拆 / 刷色 / 模板 / 开存档 / 出立体图 / 导出 STL·OBJ·HTML），外加一张常驻输入条上方的 🧱 卡片（DeepSeek Harness / Cordis）。",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js"
+  },
+  "files": [
+    "index.js",
+    "tools.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "kid",
+    "3d",
+    "modeling"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baixiaoustc/dsh-kidlab.git",
+    "directory": "plugins/kid-3d"
+  },
+  "homepage": "https://github.com/baixiaoustc/dsh-kidlab#readme",
+  "bugs": {
+    "url": "https://github.com/baixiaoustc/dsh-kidlab/issues"
+  },
+  "author": "baixiaoustc",
+  "scripts": {
+    "verify": "node verify.mjs",
+    "build": "node build.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
